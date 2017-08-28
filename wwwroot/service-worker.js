@@ -17,10 +17,11 @@ var cacheName = 'aeroWeather-1';
 var filesToCache = [
   '/',
   '/Home/Index',
-  '/js/app.js',
-  '/css/inline.min.css',
-  '/images/ic_add_white_24px.svg',
-  '/images/ic_refresh_white_24px.svg'
+  '/js/app.js'
+  // ,
+  // '/css/inline.min.css',
+  // '/images/ic_add_white_24px.svg',
+  // '/images/ic_refresh_white_24px.svg'
 ];
 
 self.addEventListener('install', function(e) {

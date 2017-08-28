@@ -2,3 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<environment names="Development">
+    <script src="~/js/app.js" async asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/app.min.js" async asp-append-version="true"></script>
+</environment>
