@@ -17,16 +17,34 @@ namespace web_ml.Controllers
             _service = service;
         }
 
-        [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> Items(string id)
+        [HttpGet("[action]/{search}")]
+        public async Task<IActionResult> Items(string search)
         {
             using (var client = new HttpClient())
             {
                 try
                 {
-                    var result = await _service.GetItems(id);
+                    var result = await _service.GetItems(search);
                     
-                    return Json(new { Cartas = id });
+                    return Json(new { result = result });
+                }
+                catch (HttpRequestException httpRequestException)
+                {
+                    return BadRequest(httpRequestException.Message);
+                }
+            }          
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> ItemDetail(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var result = await _service.GetItemDetail(id);
+                    
+                    return Json(new { itemdetail = result });
                 }
                 catch (HttpRequestException httpRequestException)
                 {

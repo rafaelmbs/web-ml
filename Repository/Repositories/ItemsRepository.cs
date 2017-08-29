@@ -19,17 +19,31 @@ namespace web_ml.Repository.Repositories
             _config = config;
         }
 
-        public async Task<IList<ResultView>> GetItems(string id)
+        public async Task<IList<ResultView>> GetItems(string search)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_config.Value.ConnectionURI_APIML);
-                var response = await client.GetAsync($"/Items/{id}");
+                var response = await client.GetAsync($"api/{search}");
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
                 var rawChart = JsonConvert.DeserializeObject<ItemsGetResponse>(stringResult);
                 return rawChart.results;
+            }
+        }
+
+        public async Task<ItemDetailGetResponse> GetItemDetail(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_config.Value.ConnectionURI_APIML);
+                var response = await client.GetAsync($"api/items/{id}");
+                response.EnsureSuccessStatusCode();
+
+                var stringResult = await response.Content.ReadAsStringAsync();
+                var rawChart = JsonConvert.DeserializeObject<ItemDetailGetResponse>(stringResult);
+                return rawChart;
             }
         }
     }
