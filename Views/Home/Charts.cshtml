@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Charts Page";
+}
+<h2>@ViewData["Title"].</h2>
+<script>
+    var app = angular.module("app", []);
+    app.controller("chartsController", function ($scope, $http) {
+        $scope.GetInfo = function (icao) {
+            $http.get('/Info/' + icao)
+            .then(function (response) {
+                $scope.Info = response.data.info[0];
+            });
+        };
+        $scope.GetCharts = function (icao) {
+            $http.get('/Charts/' + icao)
+            .then(function (response) {
+                $scope.Charts = response.data.cartas[0].item;
+            });
+        };
+        var icao = "@ViewData["icao"]";
+
+        $scope.GetInfo(icao);
+        $scope.GetCharts(icao);
+    });
+</script>
+<div class="card cardTemplate weather-forecast">
+    <div ng-cloak ng-show="Charts != null" ng-app="app" ng-controller="chartsController" class="">
+    <p ng-cloak>{{Info.aeroCode[0] + ' - ' + Info.name[0] }}</p>
+    <table class="table table-responsive">
+        <tr>
+            <td>Tipo</td>
+            <td>Carta</td>
+        </tr>
+        <tr ng-repeat="c in Charts">
+           <td ng-bind="c.tipo[0]"></td>
+           <td><a target="_blank" href="{{c.link[0]}}" ng-bind=c.nome[0]></a></td>
+        </tr>
+    </table>
+    </div>
+    <hr />
+    <a href="/Home" class="btn btn-primary">Voltar</a>
+</div>

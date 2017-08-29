@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using web_ml.Configuration;
 
 namespace web_ml
 {
@@ -29,6 +30,8 @@ namespace web_ml
         {
             // Add framework services.
             services.AddMvc();
+
+            AppConfiguration.ConfigureServices(services, Configuration);  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
