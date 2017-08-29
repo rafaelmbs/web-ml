@@ -2,4 +2,43 @@
     ViewData["Title"] = "Items Page";
 }
 
-<h2>@ViewData["search"].</h2>
+<h2>@ViewData["search"]</h2>
+
+<script src="~/lib/angular/angular.js"></script>
+<script src="~/lib/angular/angular-route.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    var app = angular.module("app", []);
+
+    app.controller("itemController", function ($scope, $http) {
+        $scope.GetItems = function (id) {
+            $http.get('/api/Items?search=' + search)
+            .then(function (response) {
+                $scope.Items = response.data;
+            });
+        };
+        var search = "@ViewData["search"]";
+        $scope.GetItems(search);
+    });
+</script>
+<div class="card cardTemplate weather-forecast">
+    <div ng-cloak ng-show="Items != null" ng-app="app" ng-controller="itemController" class="">
+        <table class="table table-responsive">
+            <tr>
+                <td>Title</td>
+                <td>Link</td>
+                <td>Condition</td>
+                <td>Price</td>
+            </tr>
+            <tr ng-repeat="i in Items.result">
+                <td ng-bind="i.title"></td>
+                <td><a href="Item/{{i.id}}" ng-bind=i.id></a></td>
+                <td ng-bind="i.condition"></td>
+                <td ng-bind="i.price"></td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <a href="/Home" class="btn btn-primary">Voltar</a>
+</div>

@@ -2,4 +2,40 @@
     ViewData["Title"] = "Item Detail Page";
 }
 
-<h2>@ViewData["id"].</h2>
+<script src="~/lib/angular/angular.js"></script>
+<script src="~/lib/angular/angular-route.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    var app = angular.module("app", []);
+
+    app.controller("itemsController", function ($scope, $http) {
+        $scope.GetItemDetail = function (id) {
+            $http.get('/api/Items/' + id)
+            .then(function (response) {
+                $scope.ItemDetail = response.data;
+            });
+        };
+        var id = "@ViewData["id"]";
+        $scope.GetItemDetail(id);
+    });
+</script>
+<div class="card cardTemplate weather-forecast">
+    <div ng-cloak ng-show="ItemDetail != null" ng-app="app" ng-controller="itemsController" class="">
+        <p>{{ItemDetail.title}}</p>
+        <table class="table table-responsive">
+            <tr>
+                <td>Title</td>
+                <td>Link</td>
+                <td>Condition</td>
+                <td>Price</td>
+            </tr>
+            <tr ng-repeat="c in ItemDetail">
+                <td ng-bind="c.title"></td>
+                <td><a href="{{c.permalink}}" ng-bind=c.id></a></td>
+                <td ng-bind="c.condition"></td>
+                <td ng-bind="c.price"></td>
+            </tr>
+        </table>
+    </div>
+</div>

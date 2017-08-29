@@ -2,7 +2,19 @@
     ViewData["Title"] = "Search Page";
 }
 
-<input type="text"/><a>Buscar</a>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    function buscar(search) {
+        window.location.href = "Home/Items?search=" + search;
+    }
+</script>
+
+<div class="card cardTemplate weather-forecast">
+    <div ng-cloak ng-show="Items != null" ng-app="app" ng-controller="itemController" class="">
+        <input type="text" id="search" />
+        <button id="1" onClick="buscar(search.value)">Search</button>
+    </div>
+</div>
 
 <environment names="Development">
     <script src="~/js/app.js" async asp-append-version="true"></script>
