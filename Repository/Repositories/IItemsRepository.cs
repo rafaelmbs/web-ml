@@ -10,5 +10,7 @@ namespace web_ml.Repository.Repositories
         Task<IList<ResultView>> GetItems(string search);
 
         Task<ItemDetailGetResponse> GetItemDetail(string id);
+
+        Task<ItemDescriptionGetResponse> GetItemDescription(string id);
     }
 }

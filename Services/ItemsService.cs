@@ -30,5 +30,12 @@ namespace web_ml.Services
 
             return result;
         }
+
+        public async Task<ItemDescriptionGetResponse> GetItemDescription(string id)
+        {
+            var result = await _itemRepository.GetItemDescription(id);
+
+            return result;
+        }
     }
 }

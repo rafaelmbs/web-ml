@@ -24,12 +24,12 @@ namespace web_ml.Repository.Repositories
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_config.Value.ConnectionURI_APIML);
-                var response = await client.GetAsync($"api/{search}");
+                var response = await client.GetAsync($"{search}");
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
-                var rawChart = JsonConvert.DeserializeObject<ItemsGetResponse>(stringResult);
-                return rawChart.results;
+                var result = JsonConvert.DeserializeObject<ItemsGetResponse>(stringResult);
+                return result.results;
             }
         }
 
@@ -38,12 +38,26 @@ namespace web_ml.Repository.Repositories
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_config.Value.ConnectionURI_APIML);
-                var response = await client.GetAsync($"api/items/{id}");
+                var response = await client.GetAsync($"items/{id}");
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
-                var rawChart = JsonConvert.DeserializeObject<ItemDetailGetResponse>(stringResult);
-                return rawChart;
+                var result = JsonConvert.DeserializeObject<ItemDetailGetResponse>(stringResult);
+                return result;
+            }
+        }
+
+        public async Task<ItemDescriptionGetResponse> GetItemDescription(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_config.Value.ConnectionURI_APIML);
+                var response = await client.GetAsync($"items/{id}/description");
+                response.EnsureSuccessStatusCode();
+
+                var stringResult = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ItemDescriptionGetResponse>(stringResult);
+                return result;
             }
         }
     }

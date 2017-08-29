@@ -12,5 +12,19 @@ namespace web_ml.Controllers
         {
             return View();
         }
+
+        public ActionResult Items(string search)
+        {
+            ViewData["search"] = search;
+
+            return View();
+        }
+
+        public ActionResult Item(string id)
+        {
+            ViewData["id"] = id;
+
+            return View();
+        }
     }
 }

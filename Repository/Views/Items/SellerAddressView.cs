@@ -9,7 +9,7 @@ namespace web_ml.Repository.Views.Items
         public CountryView country { get; set; }
         public StateView state { get; set; }
         public CityView city { get; set; }
-        public double latitude { get; set; }
-        public double longitude { get; set; }
+        public double? latitude { get; set; }
+        public double? longitude { get; set; }
     }
 }

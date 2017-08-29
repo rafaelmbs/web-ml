@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
@@ -17,7 +14,7 @@ namespace web_ml.Controllers
             _service = service;
         }
 
-        [HttpGet("[action]/{search}")]
+        [HttpGet("/api/[controller]")]
         public async Task<IActionResult> Items(string search)
         {
             using (var client = new HttpClient())
@@ -35,7 +32,7 @@ namespace web_ml.Controllers
             }          
         }
 
-        [HttpGet("[action]/{id}")]
+        [HttpGet("/api/[controller]/{id}")]
         public async Task<IActionResult> ItemDetail(string id)
         {
             using (var client = new HttpClient())
@@ -50,7 +47,25 @@ namespace web_ml.Controllers
                 {
                     return BadRequest(httpRequestException.Message);
                 }
-            }          
+            }
+        }
+
+        [HttpGet("/api/[controller]/{id}/description")]
+        public async Task<IActionResult> ItemDescription(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var result = await _service.GetItemDescription(id);
+
+                    return Json(new { itemdescription = result });
+                }
+                catch (HttpRequestException httpRequestException)
+                {
+                    return BadRequest(httpRequestException.Message);
+                }
+            }
         }
     }
 }

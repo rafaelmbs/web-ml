@@ -26,7 +26,7 @@ namespace web_ml.Repository.Views.Items
         public SellerAddressView seller_address { get; set; }
         public IList<AttributeView> attributes { get; set; }
         public DifferentialPricingView differential_pricing { get; set; }
-        public int? original_price { get; set; }
+        public double? original_price { get; set; }
         public string category_id { get; set; }
         public object official_store_id { get; set; }
         public string catalog_product_id { get; set; }
