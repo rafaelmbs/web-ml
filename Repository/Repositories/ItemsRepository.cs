@@ -19,7 +19,7 @@ namespace web_ml.Repository.Repositories
             _config = config;
         }
 
-        public async Task<IList<ResultView>> GetItems(string search)
+        public async Task<ItemsGetResponse> GetItems(string search)
         {
             using (var client = new HttpClient())
             {
@@ -29,7 +29,7 @@ namespace web_ml.Repository.Repositories
 
                 var stringResult = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<ItemsGetResponse>(stringResult);
-                return result.results;
+                return result;
             }
         }
 

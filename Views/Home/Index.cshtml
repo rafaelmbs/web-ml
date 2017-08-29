@@ -7,11 +7,18 @@
     function buscar(search) {
         window.location.href = "Home/Items?search=" + search;
     }
+
+    function runScript(e) {
+        if (e.keyCode == 13) {
+            var search = $('#search').val();
+            buscar(search);
+        }
+    }
 </script>
 
 <div class="card cardTemplate weather-forecast">
     <div ng-cloak ng-show="Items != null" ng-app="app" ng-controller="itemController" class="">
-        <input type="text" id="search" />
+        <input type="text" onkeypress="return runScript(event)" id="search" />
         <button id="1" onClick="buscar(search.value)">Search</button>
     </div>
 </div>

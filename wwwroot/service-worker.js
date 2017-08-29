@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var dataCacheName = 'aeroWeatherData-v1';
-var cacheName = 'aeroWeather-1';
+var dataCacheName = 'mercadoLivreData-v1';
+var cacheName = 'mercadoLivre-1';
 var filesToCache = [
   '/',
   '/Home/Index',
@@ -61,7 +61,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = '/Weather/';
+  var dataUrl = '/Items/';
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh

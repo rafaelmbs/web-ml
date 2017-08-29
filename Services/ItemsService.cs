@@ -17,7 +17,7 @@ namespace web_ml.Services
             _itemRepository = itemRepository;
         }
 
-        public async Task<IList<ResultView>> GetItems(string search)
+        public async Task<ItemsGetResponse> GetItems(string search)
         {
             var result = await _itemRepository.GetItems(search);
 

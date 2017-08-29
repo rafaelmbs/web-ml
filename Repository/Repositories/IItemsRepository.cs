@@ -7,7 +7,7 @@ namespace web_ml.Repository.Repositories
 {
     public interface IItemsRepository
     {
-        Task<IList<ResultView>> GetItems(string search);
+        Task<ItemsGetResponse> GetItems(string search);
 
         Task<ItemDetailGetResponse> GetItemDetail(string id);
 
