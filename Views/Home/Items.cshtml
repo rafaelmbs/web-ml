@@ -10,7 +10,6 @@
 
 <script>
     var app = angular.module("app", []);
-
     app.controller("itemController", function ($scope, $http) {
         $scope.GetItems = function (id) {
             $http.get('/api/Items?search=' + search)
@@ -25,17 +24,18 @@
 <div class="card cardTemplate weather-forecast">
     <div ng-cloak ng-show="Items != null" ng-app="app" ng-controller="itemController" class="">
         <table class="table table-responsive">
-            <tr>
+            @*<tr>
                 <td>Title</td>
                 <td>Link</td>
                 <td>Condition</td>
                 <td>Price</td>
-            </tr>
-            <tr ng-repeat="i in Items.result.results | limitTo: 4">
-                <td ng-bind="i.title"></td>
-                <td><a href="Item/{{i.id}}" ng-bind=i.id></a></td>
-                <td ng-bind="i.condition"></td>
+            </tr>*@
+            <tr ng-repeat="i in Items.result.results | limitTo: 4">                
+                <td><img src="{{i.thumbnail}}"/></td>
                 <td ng-bind="i.price"></td>
+                <td ng-bind="i.title"></td>
+                <td ng-bind="i.address.city_name"></td>
+                <td><a href="Items/{{i.id}}" ng-bind=i.id></a></td>                
             </tr>
         </table>
     </div>

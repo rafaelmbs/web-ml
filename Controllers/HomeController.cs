@@ -13,6 +13,7 @@ namespace web_ml.Controllers
             return View();
         }
 
+        [Route("Items")]
         public ActionResult Items(string search)
         {
             ViewData["search"] = search;
@@ -20,7 +21,8 @@ namespace web_ml.Controllers
             return View();
         }
 
-        public ActionResult Item(string id)
+        [Route("Items/{id}")]
+        public ActionResult ItemDetail(string id)
         {
             ViewData["id"] = id;
 
