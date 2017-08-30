@@ -1,19 +1,18 @@
-using System;
-using System.Collections.Generic;
+using AutoMapper;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using web_ml.Contracts.Items;
+using web_ml.Contracts;
 using web_ml.Repository.Repositories;
-using web_ml.Repository.Views.Items;
-using Newtonsoft.Json;
 
 namespace web_ml.Services
 {
     public class ItemsService
     {
+        private readonly IMapper _mapper;
         private readonly IItemsRepository _itemRepository;
-        public ItemsService(IItemsRepository itemRepository)
+
+        public ItemsService(IMapper mapper, IItemsRepository itemRepository)
         {
+            _mapper = mapper;
             _itemRepository = itemRepository;
         }
 
@@ -21,14 +20,18 @@ namespace web_ml.Services
         {
             var result = await _itemRepository.GetItems(search);
 
-            return result;
+            var response = _mapper.Map<ItemsGetResponse>(result);
+
+            return response;
         }
 
         public async Task<ItemDetailGetResponse> GetItemDetail(string id)
         {
             var result = await _itemRepository.GetItemDetail(id);
 
-            return result;
+            var response = _mapper.Map<ItemDetailGetResponse>(result);
+
+            return response;
         }
 
         public async Task<ItemDescriptionGetResponse> GetItemDescription(string id)

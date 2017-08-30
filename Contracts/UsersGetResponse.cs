@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using web_ml.Repository.Views.Users;
 
-namespace web_ml.Contracts.Users
+namespace web_ml.Contracts
 {
     public class UsersGetResponse
     {

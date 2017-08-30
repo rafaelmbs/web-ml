@@ -1,12 +1,12 @@
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using web_ml.Contracts.Items;
+using web_ml.Contracts;
+using web_ml.Repository.Views.ItemDetail;
 using web_ml.Repository.Views.Items;
 using web_ml.Settings;
-using Newtonsoft.Json;
 
 namespace web_ml.Repository.Repositories
 {
@@ -19,7 +19,7 @@ namespace web_ml.Repository.Repositories
             _config = config;
         }
 
-        public async Task<ItemsGetResponse> GetItems(string search)
+        public async Task<ResultItemsView> GetItems(string search)
         {
             using (var client = new HttpClient())
             {
@@ -28,12 +28,12 @@ namespace web_ml.Repository.Repositories
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<ItemsGetResponse>(stringResult);
+                var result = JsonConvert.DeserializeObject<ResultItemsView>(stringResult);
                 return result;
             }
         }
 
-        public async Task<ItemDetailGetResponse> GetItemDetail(string id)
+        public async Task<ResultItemDetailView> GetItemDetail(string id)
         {
             using (var client = new HttpClient())
             {
@@ -42,7 +42,7 @@ namespace web_ml.Repository.Repositories
                 response.EnsureSuccessStatusCode();
 
                 var stringResult = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<ItemDetailGetResponse>(stringResult);
+                var result = JsonConvert.DeserializeObject<ResultItemDetailView>(stringResult);
                 return result;
             }
         }

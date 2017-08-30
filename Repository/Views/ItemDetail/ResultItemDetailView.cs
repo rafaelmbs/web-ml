@@ -1,10 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using web_ml.Repository.Views.ItemDetail;
 
-namespace web_ml.Contracts.Items
+namespace web_ml.Repository.Views.ItemDetail
 {
-    public class ItemDetailGetResponse
+    public class ResultItemDetailView
     {
         public string id { get; set; }
         public string site_id { get; set; }
@@ -58,5 +57,4 @@ namespace web_ml.Contracts.Items
         public DateTime date_created { get; set; }
         public DateTime last_updated { get; set; }
     }
-
 }

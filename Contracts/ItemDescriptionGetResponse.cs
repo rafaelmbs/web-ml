@@ -1,7 +1,7 @@
 ﻿using System;
 using web_ml.Repository.Views.ItemDescription;
 
-namespace web_ml.Contracts.Items
+namespace web_ml.Contracts
 {
     public class ItemDescriptionGetResponse
     {

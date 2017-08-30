@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using web_ml.Repository.Views.Categories;
 
-namespace web_ml.Contracts.Categories
+namespace web_ml.Contracts
 {
     public class CategoriesGetResponse
 {

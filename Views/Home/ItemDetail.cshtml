@@ -2,6 +2,8 @@
     ViewData["Title"] = "Item Detail Page";
 }
 
+<h2>ViewData["Title"]</h2>
+
 <script src="~/lib/angular/angular.js"></script>
 <script src="~/lib/angular/angular-route.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -9,11 +11,11 @@
 <script>
     var app = angular.module("app", []);
 
-    app.controller("itemsController", function ($scope, $http) {
+    app.controller("itemController", function ($scope, $http) {
         $scope.GetItemDetail = function (id) {
             $http.get('/api/Items/' + id)
             .then(function (response) {
-                $scope.ItemDetail = response.data;
+                $scope.Item = response.data.itemdetail;
             });
         };
         var id = "@ViewData["id"]";
@@ -21,121 +23,18 @@
     });
 </script>
 
-@*<div class="nav-bounds">
-        <div class="layout-main u-clearfix">
-            <div class="layout-col layout-col--left">
-                <div class="vip-gallery-container ">
-                    <div id="productGalleryCollection" class="vip-gallery" data-gallery="">
-                        <span class="product-gallery-nav" data-direction="previous" style="">
-                            <svg width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class="ui-icon ui-icon--chevron--left">
-                                <g fill="#3483fa" fill-rule="evenodd">
-                                    <path d="M6.646 5.354l4 4 .354.353.707-.707-.353-.354-4-4L7 4.293 6.293 5z"></path>
-                                    <path d="M7.354 13.354l4-4L11.707 9 11 8.293l-.354.353-4 4-.353.354.707.707z"></path>
-                                </g>
-                            </svg>
-                        </span>
-                        <span class="product-gallery-nav" data-direction="next" style="">
-                            <svg width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class="ui-icon ui-icon--chevron--right">
-                                <g fill="#3483fa" fill-rule="evenodd">
-                                    <path d="M6.646 5.354l4 4 .354.353.707-.707-.353-.354-4-4L7 4.293 6.293 5z"></path>
-                                    <path d="M7.354 13.354l4-4L11.707 9 11 8.293l-.354.353-4 4-.353.354.707.707z"></path>
-                                </g>
-                            </svg>
-                        </span>
-
-                        <div id="gallery_dflt" class="product-gallery thumbs-col-1 ch-enlarge ch-points-ltrt" style="min-height: 500px">
-
-                            <div class="gallery-content item-gallery__wrapper" data-gallery-id="COLOR_SECONDARY_COLOR|52053" data-full-images="[{&quot;src&quot;:&quot;https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_822784-MLB25902766473_082017-F.webp&quot;,&quot;w&quot;:&quot;596&quot;,&quot;h&quot;:&quot;610&quot;},{&quot;src&quot;:&quot;https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_759187-MLB25902766897_082017-F.webp&quot;,&quot;w&quot;:&quot;516&quot;,&quot;h&quot;:&quot;610&quot;},{&quot;src&quot;:&quot;https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_882695-MLB25902773629_082017-F.webp&quot;,&quot;w&quot;:&quot;1200&quot;,&quot;h&quot;:&quot;933&quot;},{&quot;src&quot;:&quot;https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_765016-MLB25902776063_082017-F.webp&quot;,&quot;w&quot;:&quot;1200&quot;,&quot;h&quot;:&quot;977&quot;}]">
-
-                                <label for="thumbgallery_COLOR_SECONDARY_COLOR|52053-0" class="gallery__thumbnail" data-imgindex="0">
-
-                                    <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_Q_NP_822784-MLB25902766473_082017-R.webp" width="70" height="70">
-
-                                </label>
-
-                                <input type="radio" id="thumbgallery_COLOR_SECONDARY_COLOR|52053-0" class="thumbgallery_COLOR_SECONDARY_COLOR|52053-0" name="product-gallery-thumbnail_COLOR_SECONDARY_COLOR|52053" checked="">
-
-                                <figure class="gallery-image-container thumbgallery_COLOR_SECONDARY_COLOR|52053-0" data-side="right" data-align="top">
-                                    <a href="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_822784-MLB25902766473_082017-F.webp" class="gallery-trigger " data-imgindex="0" data-size="596x610" style="height: 500px">
-
-                                        <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_822784-MLB25902766473_082017-O.webp" width="488" height="500" data-srcset="https://http2.mlstatic.com/D_NQ_NP_822784-MLB25902766473_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_822784-MLB25902766473_082017-F.webp 2x" alt="apple new ipad 2017 128gb garantia nfe novo 12x sj envio 24h" data-imgindex="0" srcset="https://http2.mlstatic.com/D_NQ_NP_822784-MLB25902766473_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_822784-MLB25902766473_082017-F.webp 2x">
-
-                                    </a>
-                                </figure>
-                                <label for="thumbgallery_COLOR_SECONDARY_COLOR|52053-1" class="gallery__thumbnail gallery__thumbnail--selected" data-imgindex="1">
-
-                                    <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_Q_NP_759187-MLB25902766897_082017-R.webp" width="70" height="70">
-
-                                </label>
-
-                                <input type="radio" id="thumbgallery_COLOR_SECONDARY_COLOR|52053-1" class="thumbgallery_COLOR_SECONDARY_COLOR|52053-1" name="product-gallery-thumbnail_COLOR_SECONDARY_COLOR|52053">
-
-                                <figure class="gallery-image-container thumbgallery_COLOR_SECONDARY_COLOR|52053-1">
-                                    <a href="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_759187-MLB25902766897_082017-F.webp" class="gallery-trigger " data-imgindex="1" data-size="516x610" style="height: 500px">
-
-                                        <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_759187-MLB25902766897_082017-O.webp" width="422" height="500" data-srcset="https://http2.mlstatic.com/D_NQ_NP_759187-MLB25902766897_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_759187-MLB25902766897_082017-F.webp 2x" alt="apple new ipad 2017 128gb garantia nfe novo 12x sj envio 24h" data-imgindex="1" srcset="https://http2.mlstatic.com/D_NQ_NP_759187-MLB25902766897_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_759187-MLB25902766897_082017-F.webp 2x">
-
-                                    </a>
-                                </figure>
-                                <label for="thumbgallery_COLOR_SECONDARY_COLOR|52053-2" class="gallery__thumbnail  " data-imgindex="2">
-
-                                    <span class="ch-icon ch-icon-search"></span>
-
-                                    <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_Q_NP_882695-MLB25902773629_082017-R.webp" width="70" height="70">
-
-                                </label>
-
-                                <input type="radio" id="thumbgallery_COLOR_SECONDARY_COLOR|52053-2" class="thumbgallery_COLOR_SECONDARY_COLOR|52053-2" name="product-gallery-thumbnail_COLOR_SECONDARY_COLOR|52053">
-
-                                <figure class="gallery-image-container thumbgallery_COLOR_SECONDARY_COLOR|52053-2">
-                                    <a href="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_882695-MLB25902773629_082017-F.webp" class="gallery-trigger ch-zoom-trigger ch-shownby-pointerenter" data-imgindex="2" data-size="1200x933" style="height: 337px; width: 433px;" data-uid="2" aria-owns="ch-zoom-2" aria-haspopup="true">
-
-                                        <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_882695-MLB25902773629_082017-O.webp" width="500" height="388" data-srcset="https://http2.mlstatic.com/D_NQ_NP_882695-MLB25902773629_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_882695-MLB25902773629_082017-F.webp 2x" alt="apple new ipad 2017 128gb garantia nfe novo 12x sj envio 24h" data-imgindex="2" srcset="https://http2.mlstatic.com/D_NQ_NP_882695-MLB25902773629_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_882695-MLB25902773629_082017-F.webp 2x">
-
-                                        <div class="ch-zoom-loading ch-hide" style="left: 167.5px; top: 119.5px;"><div class="ch-loading-large"></div><p>Carregando zoom...</p></div><div class="ch-zoom-seeker ch-hide"></div>
-                                    </a>
-                                </figure>
-                                <label for="thumbgallery_COLOR_SECONDARY_COLOR|52053-3" class="gallery__thumbnail  " data-imgindex="3">
-
-                                    <span class="ch-icon ch-icon-search"></span>
-
-                                    <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_Q_NP_765016-MLB25902776063_082017-R.webp" width="70" height="70">
-
-                                </label>
-
-                                <input type="radio" id="thumbgallery_COLOR_SECONDARY_COLOR|52053-3" class="thumbgallery_COLOR_SECONDARY_COLOR|52053-3" name="product-gallery-thumbnail_COLOR_SECONDARY_COLOR|52053">
-
-                                <figure class="gallery-image-container thumbgallery_COLOR_SECONDARY_COLOR|52053-3">
-                                    <a href="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_765016-MLB25902776063_082017-F.webp" class="gallery-trigger ch-zoom-trigger ch-shownby-pointerenter" data-imgindex="3" data-size="1200x977" style="height: 352px; width: 433px;" data-uid="3" aria-owns="ch-zoom-3" aria-haspopup="true">
-
-                                        <img src="https://http2.mlstatic.com/apple-new-ipad-2017-128gb-garantia-nfe-novo-12x-sj-envio-24h-D_NQ_NP_765016-MLB25902776063_082017-O.webp" width="500" height="407" data-srcset="https://http2.mlstatic.com/D_NQ_NP_765016-MLB25902776063_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_765016-MLB25902776063_082017-F.webp 2x" alt="apple new ipad 2017 128gb garantia nfe novo 12x sj envio 24h" data-imgindex="3" srcset="https://http2.mlstatic.com/D_NQ_NP_765016-MLB25902776063_082017-OD.webp 1x, https://http2.mlstatic.com/D_NQ_NP_765016-MLB25902776063_082017-F.webp 2x">
-
-                                        <div class="ch-zoom-loading ch-hide" style="left: 167.5px; top: 127px;"><div class="ch-loading-large"></div><p>Carregando zoom...</p></div><div class="ch-zoom-seeker ch-hide"></div>
-                                    </a>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
 <div class="card cardTemplate weather-forecast">
-    <div ng-cloak ng-show="ItemDetail != null" ng-app="app" ng-controller="itemsController" class="">
-        <p>{{ItemDetail.title}}</p>
+    <div ng-app="app" ng-controller="itemController" class="">
         <table class="table table-responsive">
             <tr>
-                <td>Title</td>
-                <td>Link</td>
-                <td>Condition</td>
-                <td>Price</td>
-            </tr>
-            <tr ng-repeat="c in ItemDetail">
-                <td ng-bind="c.title"></td>
-                <td><a href="{{c.permalink}}" ng-bind=c.id></a></td>
-                <td ng-bind="c.condition"></td>
-                <td ng-bind="c.price"></td>
+                <td ng-bind="Item.item.id"></td>
+                <td ng-bind="Item.item.title"></td>
+                <td ng-bind="Item.item.price.amount"></td>
+                <td ng-bind="Item.item.picture"></td>
+                <td ng-bind="Item.item.condition"></td>
+                <td ng-bind="Item.item.free_shipping"></td>
+                <td ng-bind="Item.item.sold_quantity"></td>
+                <td ng-bind="Item.item.description"></td>
             </tr>
         </table>
     </div>

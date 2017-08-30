@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using web_ml.Repository.Views.Items;
+﻿using System.Collections.Generic;
 
-namespace web_ml.Contracts.Items
+namespace web_ml.Repository.Views.Items
 {
-    public class ItemsGetResponse
+    public class ResultItemsView
     {
         public string site_id { get; set; }
         public string query { get; set; }
