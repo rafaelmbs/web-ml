@@ -21,24 +21,54 @@
         $scope.GetItems(search);
     });
 </script>
+
 <div class="card cardTemplate weather-forecast">
     <div ng-cloak ng-show="Items != null" ng-app="app" ng-controller="itemController" class="">
-        <table class="table table-responsive">
-            @*<tr>
-                <td>Title</td>
-                <td>Link</td>
-                <td>Condition</td>
-                <td>Price</td>
-            </tr>*@
-            <tr ng-repeat="i in Items.result.results | limitTo: 4">                
-                <td><img src="{{i.thumbnail}}"/></td>
-                <td ng-bind="i.price"></td>
-                <td ng-bind="i.title"></td>
-                <td ng-bind="i.address.city_name"></td>
-                <td><a href="Items/{{i.id}}" ng-bind=i.id></a></td>                
-            </tr>
-        </table>
+        <ol id="searchResults" class="section search-results list-view stack search-results-core" imgtype="listingLightweight">
+            <li class="results-item article stack " ng-repeat="i in Items.result.results | limitTo: 4">
+                <div class="rowItem item item--stack new " id="{{i.id}}">
+                    <div class="item__image item__image--stack">
+                        <div class="images-viewer" item-url="/Items/{{i.id}}" item-id="{{i.id}}">
+                            <div class="image-content">
+                                <a href="/Items/{{i.id}}" class="figure item-image item__js-link">
+                                    <img width="160" height="160" alt="{{i.thumbnail}}" src="{{i.thumbnail}}" class="lazy-load" srcset="{{i.thumbnail}} 1x, {{i.thumbnail}} 2x">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item__info-container ">
+                        <div class="item__info">
+                            <h2 class="item__title list-view-item-title">
+                                <a href="" class="item__info-title"> <span class="main-title"> {{i.title}} </span> </a>
+                            </h2>
+                            <div class="price__container">
+                                <div class="item__price "> <span class="price-symbol">$</span> <span class="price-fraction">{{i.price}}</span></div>
+                            </div>
+                            <div class="item__stack_column">
+                                <div class="item__stack_column__info">
+                                    <div class="stack_column_item installments">
+                                        <span class="item-installments free-interest">
+                                            <span class="item-installments-multiplier"> {{i.installments.quantity}}x </span>
+                                            <span class="item-installments-price"> $ {{i.installments.amount}} @*<sup class="installment__decimals">16</sup>*@ </span>
+                                            <span class="item-installments-interest"> {{i.installments.rate}}% </span>
+                                        </span>
+                                    </div>
+                                    <div class="stack_column_item shipping" ng-show="i.shipping.free_shipping">
+                                        <div class="item__shipping icon-truck-small">
+                                            <p class="stack-item-info "> Free shipping {{i.shipping.mode}} </p>
+                                        </div>
+                                    </div>
+                                    <div class="stack_column_item status">
+                                        <div class="item__status">
+                                            <div class="item__condition"> {{i.sold_quantity}} sold - {{i.address.city_name}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ol>
     </div>
-    <hr />
-    <a href="/Home" class="btn btn-primary">Voltar</a>
 </div>
