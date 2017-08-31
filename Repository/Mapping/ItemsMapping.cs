@@ -10,12 +10,13 @@ namespace web_ml.Repository.Mapping
         public ItemsMapping()
         {
             CreateMap<ResultItemsView, ItemsGetResponse>()
+                .ForMember(dest => dest.author, opt => opt.MapFrom(s => new AuthorView()
+                {
+                    name = "Rafael",
+                    lastname = "Mendes"
+                }))
                 .ForMember(dest => dest.categories, opt => opt.MapFrom(s => s.filters[0].values[0].path_from_root))
                 .ForMember(dest => dest.items, opt => opt.MapFrom(s => s.results));
-
-            CreateMap<ResultItemsView, AuthorView>()
-                .ForMember(dest => dest.name, opt => opt.MapFrom(s => "Rafael"))
-                .ForMember(dest => dest.lastname, opt => opt.MapFrom(s => "Mendes"));
 
             CreateMap<ResultView, ItemsView>()
                 .ForMember(dest => dest.id, opt => opt.MapFrom(s => s.id))
