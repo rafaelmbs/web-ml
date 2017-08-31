@@ -17,19 +17,17 @@
     });
 </script>
 
-<div class="card cardTemplate weather-forecast">
-    <div ng-app="app" ng-controller="itemController" class="">
-        <table class="table table-responsive">
-            <tr>
-                <td ng-bind="Item.item.id"></td>
-                <td ng-bind="Item.item.title"></td>
-                <td ng-bind="Item.item.price.amount"></td>
-                <td ng-bind="Item.item.picture"></td>
-                <td ng-bind="Item.item.condition"></td>
-                <td ng-bind="Item.item.free_shipping"></td>
-                <td ng-bind="Item.item.sold_quantity"></td>
-                <td ng-bind="Item.item.description"></td>
-            </tr>
-        </table>
+<div ng-app="app" ng-controller="itemController">
+    <h2 ng-bind="Item.item.title"></h2>
+    <p><img src="{{Item.item.picture}}"/></p>
+    <div>
+        <p ng-bind="Item.item.id"></p>
+        Titulo<p ng-bind="Item.item.title"></p>
+        Price<p ng-bind="Item.item.price.amount"></p>
+        <p ng-bind="Item.item.picture"></p>
+        <p ng-bind="Item.item.condition"></p>
+        <p ng-bind="Item.item.free_shipping"></p>
+        <p ng-bind="Item.item.sold_quantity"></p>
+        <p ng-bind="Item.item.description"></p>
     </div>
 </div>
